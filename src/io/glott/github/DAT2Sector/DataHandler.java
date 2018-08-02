@@ -82,20 +82,18 @@ public class DataHandler
 			{
 				String s = readFile(f);
 				String line = "";
-				String out = String.format("%1$-" + 16 + "s", f.getName().replace(".dat", ""))
-						+ "          N099.00.00.000 E099.00.00.000 N099.00.00.000 E099.00.00.000\n";
+				pw.print(String.format("%1$-" + 16 + "s", f.getName().replace(".dat", "")) + "          N099.00.00.000 E099.00.00.000 N099.00.00.000 E099.00.00.000\n");
 				boolean start = false;
 				for (String z : s.split("\n"))
 				{
 					if (z.contains("LINE !"))
 					{
 						start = true;
-						out += convertLine(line);
+						pw.print(convertLine(line));
 						line = "";
 					} else if (start)
 						line += "\n" + z;
 				}
-				pw.print(out);
 
 				i++;
 				int k = (int) (100F * i / files.length);
@@ -106,7 +104,7 @@ public class DataHandler
 			}
 			pw.println(SCT_END);
 			pw.close();
-		} catch (Exception ex)
+		} catch (Exception ignored)
 		{
 		}
 

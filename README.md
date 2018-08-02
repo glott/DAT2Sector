@@ -1,7 +1,7 @@
 # DAT2Sector
 _by Josh Glottmann_
 
-**Version 0.1.0** - 08/02/2018
+**Version 0.1.1** - 08/02/2018
 
 This application converts FAA .dat files to .sct2 files. Select the desired .dat files, click ``Convert to SCT2``, and a sector file will be output in ``Downloads``.
 
