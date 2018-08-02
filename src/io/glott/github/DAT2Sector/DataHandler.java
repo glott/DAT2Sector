@@ -82,7 +82,7 @@ public class DataHandler
 			{
 				String s = readFile(f);
 				String line = "";
-				pw.print(String.format("%1$-" + 16 + "s", f.getName().replace(".dat", "")) + "          N099.00.00.000 E099.00.00.000 N099.00.00.000 E099.00.00.000\n");
+				pw.print(String.format("%1$-" + 24 + "s", f.getName().replace(".dat", "")).substring(0, 24) + "  N099.00.00.000 E099.00.00.000 N099.00.00.000 E099.00.00.000\n");
 				boolean start = false;
 				for (String z : s.split("\n"))
 				{
@@ -104,6 +104,7 @@ public class DataHandler
 			}
 			pw.println(SCT_END);
 			pw.close();
+			progressBar.setString("Converted " + files.length + " maps to sct2!");
 		} catch (Exception ignored)
 		{
 		}
