@@ -55,7 +55,7 @@ public class DataHandler
 			"\n" +
 			"[LABELS]\n";
 
-	private static String readFile(File f)
+	public static String readFile(File f)
 	{
 		try
 		{

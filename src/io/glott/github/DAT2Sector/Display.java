@@ -5,6 +5,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.HashMap;
 
 public class Display
 {
@@ -15,12 +16,12 @@ public class Display
 	private JButton convertXMLButton;
 	private JProgressBar progressBar;
 	private JButton selectKeyButton;
-	private JButton selectSCTButton;
 
 	private File[] DATFiles;
-	private File SCTFile;
 	private File keyFile;
 	private DataHandler handler;
+
+	private HashMap<String, String[]> keyValues = new HashMap<>();
 
 	public Display(DataHandler handler)
 	{
@@ -41,24 +42,7 @@ public class Display
 				if (DATFiles != null && DATFiles.length >= 1)
 					convertSCTButton.setEnabled(true);
 				if (keyFile != null && keyFile.exists())
-					if ((DATFiles != null && DATFiles.length >= 1) || (SCTFile != null && SCTFile.exists()))
-						convertXMLButton.setEnabled(true);
-			}
-		});
-
-		selectSCTButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				JFileChooser chooser = new JFileChooser();
-				chooser.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + "Downloads"));
-				chooser.setFileFilter(new FileNameExtensionFilter("SCT2 File (*.sct2)", "sct2"));
-				chooser.setAcceptAllFileFilterUsed(false);
-				chooser.setMultiSelectionEnabled(false);
-				chooser.showOpenDialog(frame);
-				SCTFile = chooser.getSelectedFile();
-				if (keyFile != null && keyFile.exists())
-					if ((DATFiles != null && DATFiles.length >= 1) || (SCTFile != null && SCTFile.exists()))
+					if ((DATFiles != null && DATFiles.length >= 1))
 						convertXMLButton.setEnabled(true);
 			}
 		});
@@ -74,9 +58,13 @@ public class Display
 				chooser.setMultiSelectionEnabled(false);
 				chooser.showOpenDialog(frame);
 				keyFile = chooser.getSelectedFile();
-				if (keyFile != null && !keyFile.getName().toLowerCase().equals("maps.key")) keyFile = null;
+				if (keyFile != null && (!keyFile.getName().toLowerCase().equals("maps.key") || !parseKey()))
+				{
+					keyFile = null;
+					convertXMLButton.setEnabled(false);
+				}
 				if (keyFile != null && keyFile.exists())
-					if ((DATFiles != null && DATFiles.length >= 1) || (SCTFile != null && SCTFile.exists()))
+					if ((DATFiles != null && DATFiles.length >= 1))
 						convertXMLButton.setEnabled(true);
 			}
 		});
@@ -88,8 +76,17 @@ public class Display
 				handler.dat_sct(DATFiles);
 				DATFiles = null;
 				convertSCTButton.setEnabled(false);
-				if(SCTFile == null || !SCTFile.exists())
-					convertXMLButton.setEnabled(false);
+				convertXMLButton.setEnabled(false);
+			}
+		});
+
+		convertXMLButton.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//
+				DATFiles = null;
+				convertSCTButton.setEnabled(false);
 			}
 		});
 
@@ -104,6 +101,21 @@ public class Display
 		frame.setResizable(false);
 		frame.setVisible(true);
 		frame.setLocationRelativeTo(null);
+	}
+
+	private boolean parseKey()
+	{
+		if (keyFile == null || !keyFile.exists() || !keyFile.getName().equals("maps.key"))
+			return false;
+		String[] s = DataHandler.readFile(keyFile).split("\n");
+		for (String z : s)
+		{
+			String[] q = z.split("\\|");
+			if (q.length == 3) keyValues.put(q[0], new String[]{q[1], q[2]});
+		}
+		if (keyValues == null || keyValues.size() == 0)
+			return false;
+		return true;
 	}
 
 }
