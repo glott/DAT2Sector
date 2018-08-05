@@ -50,4 +50,4 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
  
  e.g. ``mia001sgp|EAST OPS|MIA-001S EAST OPERATIONS ARRIVAL``
   
-###__[Download](https://github.com/glott/DAT2Sector/blob/master/DAT2Sector.jar?raw=true)__
+### __[Download](https://github.com/glott/DAT2Sector/blob/master/DAT2Sector.jar?raw=true)__
