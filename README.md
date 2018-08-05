@@ -1,7 +1,7 @@
 # DAT2Sector
 _by Josh Glottmann_
 
-**Version 0.2.0** - 08/05/2018
+**Version 0.2.1** - 08/05/2018
 
 This application converts FAA .dat files to .sct2 files and .sct2 files to .xml files.
  
@@ -13,7 +13,7 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
  
  ### Removing map "border" (optional)
  
- 1) Download and unzip [dxf_convert.zip](http://nav.vatsim-germany.org/files/library/public/dxf_convert.zip)
+ 1) Download and unzip [dxf_convert.zip](http://nav.vatsim-germany.org/files/library/public/dxf_convert.zip).
  
  2) Run `sct_2_dxf.exe` and follow the instructions.
  
@@ -25,13 +25,14 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
  
      1) Delete all text before the first map.
      
-     2) Replace ` Color_7ACI` to ` `
+     2) Replace ` Color_7ACI` to ` `.
      
      3) Replace `STAR ` to ` `.
      
-     4) Replace `                          S000.59.59.817 E099.00.00.000 S000.59.59.817 E099.00.00.000` to ` `
+     4) Replace `                          S000.59.59.817 E099.00.00.000 S000.59.59.817 E099.00.00.000` to ` `.
      
-     5) Replace `N000.00.00.000 E000.00.00.000 N000.00.00.000 E000.00.00.000` to ``     S090.00.00.000 E099.00.00.000 S090.00.00.000 E099.00.00.000``
+     5) Replace `N000.00.00.000 E000.00.00.000 N000.00.00.000 E000.00.00.000` to ``     S090.00.00.000 E099.00.00.000 S090.00.00.000 E099.00.00.000``.
+ 
  
  6) Replace the contents of the `[STAR]` section in the original `.sct2` file to that of the `NAME._sid_section.sct` file.
   
@@ -39,8 +40,14 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
  
  1) Select the appropriate `.key` file.
  
- 2) By default, the converted `.dat` file's `.sct2` conversion will be automatically selected. Another `.sct2` file may be selected. 
+ 2) By default, the converted `.dat` file's `.sct2` file is automatically selected. Another `.sct2` file may be selected. 
  
  3) Click on `Convert to XML`. The converted file will be saved in a folder in `Downloads`.
+ 
+ ### .key format
+ 
+ ``nameofdatfile|SHORT NAME|LONG NAME``
+ 
+ e.g. ``mia001sgp|EAST OPS|MIA-001S EAST OPERATIONS ARRIVAL``
   
-__[Download](https://github.com/glott/DAT2Sector/blob/master/DAT2Sector.jar?raw=true)__
+###__[Download](https://github.com/glott/DAT2Sector/blob/master/DAT2Sector.jar?raw=true)__

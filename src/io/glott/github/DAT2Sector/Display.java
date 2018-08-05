@@ -2,6 +2,7 @@ package io.glott.github.DAT2Sector;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.io.File;
 import java.util.HashMap;
 
@@ -87,9 +88,11 @@ public class Display
 			sctFile = null;
 			convertXMLButton.setEnabled(false);
 		});
+
+		progressBar.setForeground(new Color(46, 204, 113));
 	}
 
-	void run()
+	public void run()
 	{
 		frame = new JFrame("DAT2Sector");
 		frame.setContentPane(panel);

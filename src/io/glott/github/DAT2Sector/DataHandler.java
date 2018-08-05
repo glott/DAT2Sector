@@ -202,10 +202,10 @@ public class DataHandler
 	{
 		String[] split = line.split("\n");
 		if (split.length <= 1) return "";
-		StringBuilder out = new StringBuilder("                          " + convertIndividualLine(split[1]));
+		String out = "                          " + convertIndividualLine(split[1]);
 		for (int i = 1; i < split.length - 1; i++)
-			out.append(" ").append(convertIndividualLine(split[i])).append("\n                          ").append(convertIndividualLine(split[i]));
-		out.append(" ").append(convertIndividualLine(split[split.length - 1]));
+			out += " " + convertIndividualLine(split[i]) + "\n                          " + convertIndividualLine(split[i]);
+		out += " " + convertIndividualLine(split[split.length - 1]);
 		return out + "\n";
 	}
 
