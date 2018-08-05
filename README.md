@@ -4,6 +4,8 @@ _by Josh Glottmann_
 **Version 0.2.1** - 08/05/2018
 
 This application converts FAA .dat files to .sct2 files and .sct2 files to .xml files.
+  
+ ### __[Download](https://github.com/glott/DAT2Sector/blob/master/DAT2Sector.jar?raw=true)__
  
  ### DAT to SCT2
  
@@ -49,5 +51,3 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
  ``nameofdatfile|SHORT NAME|LONG NAME``
  
  e.g. ``mia001sgp|EAST OPS|MIA-001S EAST OPERATIONS ARRIVAL``
-  
-### __[Download](https://github.com/glott/DAT2Sector/blob/master/DAT2Sector.jar?raw=true)__
