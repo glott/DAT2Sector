@@ -1,7 +1,7 @@
 # DAT2Sector
 _by Josh Glottmann_
 
-**Version 0.2.1** - 08/05/2018
+**Version 1.3.1** - 06/21/2022
 
 This application converts FAA .dat files to .sct2 files and .sct2 files to .xml files.
   
@@ -45,9 +45,33 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
  2) By default, the converted `.dat` file's `.sct2` file is automatically selected. Another `.sct2` file may be selected. 
  
  3) Click on `Convert to XML`. The converted file will be saved in a folder in `Downloads`.
+
+### Retitle SCT2
+
+1) Select the appropriate `.key` file.
+
+2) By default, the converted `.dat` file's `.sct2` file is automatically selected. Another `.sct2` file may be selected.
  
+3) Click on `Retitle SCT2`. This will rename all the maps in the selected sector file based on the selected `.key` file.
+
+4) The converted file will be saved in a folder in `Downloads` with the suffix `_ret`.
+   
+### Merge XML
+
+1) After running `Convert to XML` above, the `Merge XML` button will become enabled.
+
+2) Click on `Merge XML` to combine all `.xml` files into one overall file. 
+
+3) The order in which the maps appear is based off the selected `.key` file.
+
+4) The combined file will be saved in a folder in `Downloads`.
+
  ### .key format
  
- ``nameofdatfile|SHORT NAME|LONG NAME``
+ ``nameofdatfile|SHORT NAME|LONG NAME|STARSGroup``
  
- e.g. ``mia001sgp|EAST OPS|MIA-001S EAST OPERATIONS ARRIVAL``
+ e.g. ``mia001sgp|EAST OPS|MIA-001S EAST OPERATIONS ARRIVAL|A``
+
+ e.g. ``fll011sgp|FLL E|FLL-011S EAST OPERATION``
+ 
+The `STARSGroup` parameter is optional and can be `A` or `B`.

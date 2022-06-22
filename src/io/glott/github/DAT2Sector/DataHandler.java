@@ -6,13 +6,14 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class DataHandler
 {
 
-    private static String SCT_STA = "[INFO]\n" +
+    private static final String SCT_STA = "[INFO]\n" +
             "ZXX\n" +
             "ZXX_CTR\n" +
             "ZXX\n" +
@@ -43,7 +44,8 @@ public class DataHandler
             "[SID]\n" +
             "\n" +
             "[STAR]";
-    private static String SCT_END = "\n" +
+
+    private static final String SCT_END = "\n" +
             "[LOW AIRWAY]\n" +
             "\n" +
             "[HIGH AIRWAY]\n" +
@@ -53,6 +55,7 @@ public class DataHandler
             "[REGIONS]\n" +
             "\n" +
             "[LABELS]\n";
+
     private JProgressBar progressBar;
 
     public static String readFile(File f)
@@ -236,16 +239,14 @@ public class DataHandler
         {
             String rep = key.get(name)[1];
             rep = rep.replace("FLCHK - ", "FC - ");
-            if(rep.length() > 34)
+            if (rep.length() > 34)
                 rep = rep.substring(9, 34);
-            else if(rep.length() > 25)
+            else if (rep.length() > 25)
                 rep = rep.substring(9);
-            else if(rep.length() > 9)
+            else if (rep.length() > 9)
                 rep = rep.substring(9);
             String pad = "                         ".substring(rep.length());
             s = s.replaceAll(name + "\\s+", rep + " " + pad);
-
-            System.out.println(name);
         }
 
         File e = null;
@@ -255,6 +256,44 @@ public class DataHandler
             e.createNewFile();
             PrintWriter pw = new PrintWriter(e);
             pw.println(s);
+            pw.close();
+        } catch (Exception ignored)
+        {
+        }
+    }
+
+    public void mergeXML(File keyfile, File sct)
+    {
+        if (keyfile == null || sct == null) return;
+        try
+        {
+            File out = new File(System.getProperty("user.home") + File.separator + "Downloads" + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Video Maps.xml");
+            out.createNewFile();
+
+            PrintWriter pw = new PrintWriter(out);
+            pw.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
+                    "<VideoMaps xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">");
+
+            String loc = System.getProperty("user.home") + File.separator + "Downloads" + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Maps" + File.separator;
+            String keys = readFile(keyfile);
+            for (String key : keys.split("\\r?\\n"))
+            {
+                pw.print("  ");
+                String[] map = key.split("\\|");
+                if (map.length < 3) return;
+                String map_name = map[2].replaceAll("[\\(\\)/]", "") + ".xml";
+                File f = new File(loc + map_name);
+                if (!f.exists()) continue;
+                String map_xml = readFile(f).replace("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n", "").replaceAll("\r?\n", "\n  ")
+                        .replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" ", "");
+
+                if (map.length == 4)
+                    map_xml = map_xml.replace("STARSGroup=\"", "STARSGroup=\"" + map[3].charAt(0));
+
+                pw.print(map_xml.substring(0, map_xml.length() - 2));
+            }
+
+            pw.println("</VideoMaps>");
             pw.close();
         } catch (Exception ignored)
         {

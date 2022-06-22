@@ -23,7 +23,7 @@ public class Display
     private File keyFile;
     private File sctFile;
 
-    private HashMap<String, String[]> keyValues = new HashMap<>();
+    private final HashMap<String, String[]> keyValues = new HashMap<>();
 
     public Display(DataHandler handler)
     {
@@ -103,12 +103,19 @@ public class Display
         {
             handler.sct_xml(keyValues, sctFile);
             convertXMLButton.setEnabled(false);
+            mergeXMLButton.setEnabled(true);
         });
 
         retitleSCTButton.addActionListener(e ->
         {
             handler.retitleSCT(keyValues, sctFile);
             retitleSCTButton.setEnabled(false);
+        });
+
+        mergeXMLButton.addActionListener(e ->
+        {
+            handler.mergeXML(keyFile, sctFile);
+            mergeXMLButton.setEnabled(false);
         });
 
         progressBar.setForeground(new Color(46, 204, 113));
@@ -133,7 +140,7 @@ public class Display
         for (String z : s)
         {
             String[] q = z.split("\\|");
-            if (q.length == 3)
+            if (q.length == 3 || q.length == 4)
                 keyValues.put(q[0], new String[]{q[1].toUpperCase().replace((char) 13 + "", ""), q[2].toUpperCase().replace((char) 13 + "", "")});
         }
         return keyValues == null || keyValues.size() == 0;
