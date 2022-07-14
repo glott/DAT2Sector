@@ -4,7 +4,7 @@ _by Josh Glottmann_
 **Version 1.3.1** - 06/21/2022
 
 This application converts FAA .dat files to .sct2 files and .sct2 files to .xml files.
-  
+
 ### __[Download](https://github.com/glott/DAT2Sector/blob/master/DAT2Sector.jar?raw=true)__
 
 ### DAT to SCT2
@@ -12,7 +12,7 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
   1) Select the desired `.dat` files.
 
   2) Click on `Convert to SCT2`. The converted file will be saved in `Downloads`.
-  
+
 ### SCT2 to XML
 
   1) Select the appropriate `.key` file.
@@ -30,7 +30,7 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
   3) Click on `Retitle SCT2`. This will rename all the maps in the selected sector file based on the selected `.key` file.
 
   4) The converted file will be saved in a folder in `Downloads` with the suffix `_ret`.
-   
+
 ### Merge XML
 
   1) After running `Convert to XML` above, the `Merge XML` button will become enabled.
@@ -43,13 +43,13 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
 
 ### .key format
 
- ``nameofdatfile|SHORT NAME|LONG NAME|STARSGroup``
+  ``nameofdatfile|SHORT NAME|LONG NAME|STARSGroup``
 
- e.g. ``mia001sgp|EAST OPS|MIA-001S EAST OPERATIONS ARRIVAL|A``
+  e.g. ``mia001sgp|EAST OPS|MIA-001S EAST OPERATIONS ARRIVAL|A``
 
- e.g. ``fll011sgp|FLL E|FLL-011S EAST OPERATION``
+  e.g. ``fll011sgp|FLL E|FLL-011S EAST OPERATION``
 
-The `STARSGroup` parameter is optional and can be `A` or `B`.
+  The `STARSGroup` parameter is optional and can be `A` or `B`.
 
 ### Removing map "border" (optional, automatic)
 
@@ -78,13 +78,13 @@ The `STARSGroup` parameter is optional and can be `A` or `B`.
   5) Use an advanced text editor and edit `NAME._sid_section.sct`. Make the following replacements: 
 
      1) Delete all text before the first map.
-     
+
      2) Replace ` Color_7ACI` to ` `.
-     
+
      3) Replace `STAR ` to ` `.
-     
+
      4) Replace `                          S000.59.59.817 E099.00.00.000 S000.59.59.817 E099.00.00.000` to ` `.
-     
+
      5) Replace `N000.00.00.000 E000.00.00.000 N000.00.00.000 E000.00.00.000` to ``     S090.00.00.000 E099.00.00.000 S090.00.00.000 E099.00.00.000``.
- 
- 6) Replace the contents of the `[STAR]` section in the original `.sct2` file to that of the `NAME._sid_section.sct` file.
+
+  6) Replace the contents of the `[STAR]` section in the original `.sct2` file to that of the `NAME._sid_section.sct` file.
