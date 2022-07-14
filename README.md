@@ -79,12 +79,12 @@ This application converts FAA .dat files to .sct2 files and .sct2 files to .xml 
 
      1) Delete all text before the first map.
 
-     2) Replace ` Color_7ACI` to ` `.
+     2) Replace <code>&nbsp;Color_7ACI</code> to <code>&nbsp;</code>.
 
-     3) Replace `STAR ` to ` `.
+     3) Replace <code>STAR&nbsp;</code> to <code>&nbsp;</code>.
 
-     4) Replace `                          S000.59.59.817 E099.00.00.000 S000.59.59.817 E099.00.00.000` to ` `.
+     4) Replace <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S000.59.59.817 E099.00.00.000 S000.59.59.817 E099.00.00.000</code> to <code>&nbsp;</code>.
 
-     5) Replace `N000.00.00.000 E000.00.00.000 N000.00.00.000 E000.00.00.000` to ``     S090.00.00.000 E099.00.00.000 S090.00.00.000 E099.00.00.000``.
+     5) Replace `N000.00.00.000 E000.00.00.000 N000.00.00.000 E000.00.00.000` to <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S090.00.00.000 E099.00.00.000 S090.00.00.000 E099.00.00.000</code>.
 
   6) Replace the contents of the `[STAR]` section in the original `.sct2` file to that of the `NAME._sid_section.sct` file.
