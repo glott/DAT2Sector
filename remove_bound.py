@@ -11,7 +11,7 @@ import imp, os, sys, re
 try:
     imp.find_module("geopy")
 except ImportError:
-    os.system("pip install geopy")
+    os.system("python -m pip install geopy")
 
 import geopy.distance
 
