@@ -6,7 +6,6 @@ import java.io.PrintWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -157,7 +156,8 @@ public class DataHandler
                     if (current != null && s.charAt(0) == ' ')
                     {
                         float[] z = convertDMS(s.replaceAll("\\s*(\\w.*)$", "$1"));
-                        pw.println("    <Element xsi:type=\"Line\" Color=\"R80G80B40\" StartLon=\"" + z[1] + "\" StartLat=\"" + z[0] + "\" EndLon=\"" + z[3] + "\" EndLat=\"" + z[2] + "\" Style=\"Solid\" Thickness=\"0\" />");
+                        pw.println("    <Element xsi:type=\"Line\" Color=\"R80G80B40\" StartLon=\"" + z[1] + "\" StartLat=\"" + z[0] + "\" EndLon=\"" + z[3] + "\" EndLat=\"" + z[2]
+                                + "\" Style=\"Solid\" Thickness=\"0\" />");
                     } else
                     {
                         if (pw != null)
@@ -170,10 +170,11 @@ public class DataHandler
                         {
                             current = new File(dir, key.get(mapID)[1].replaceAll("[^A-Z0-9\\- ]", "") + ".xml");
                             current.createNewFile();
+                            String STARSGroup = key.get(mapID).length == 3 && key.get(mapID)[2].length() == 1 ? STARSGroup = key.get(mapID)[2] : "";
                             pw = new PrintWriter(current);
-                            pw.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + "<VideoMap xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" ShortName=\""
-                                    + key.get(mapID)[0] + "\" LongName=\"" + key.get(mapID)[1] + "\" STARSGroup=\"\" STARSTDMOnly=\"false\" VisibleInList=\"true\">\n" + "  <Colors>\n"
-                                    + "    <NamedColor Red=\"80\" Green=\"80\" Blue=\"40\" Name=\"R80G80B40\" />\n" + "  </Colors>\n" + "  <Elements>");
+                            pw.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" + "<VideoMap xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
+                                    + "ShortName=\"" + key.get(mapID)[0] + "\" LongName=\"" + key.get(mapID)[1] + "\" STARSGroup=\"" + STARSGroup + "\" STARSTDMOnly=\"false\" VisibleInList=\"true\">\n"
+                                    + "  <Colors>\n    <NamedColor Red=\"80\" Green=\"80\" Blue=\"40\" Name=\"R80G80B40\" />\n" + "  </Colors>\n" + "  <Elements>");
                             num++;
                         } else
                         {
@@ -288,7 +289,7 @@ public class DataHandler
                         .replace("xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" ", "");
 
                 if (map.length == 4)
-                    map_xml = map_xml.replace("STARSGroup=\"", "STARSGroup=\"" + map[3].charAt(0));
+                    map_xml = map_xml.replace("STARSGroup=\"(.*?)\"", "STARSGroup=\"" + map[3].charAt(0) + "\"");
 
                 pw.print(map_xml.substring(0, map_xml.length() - 2));
             }

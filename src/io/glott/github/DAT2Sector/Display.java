@@ -140,8 +140,11 @@ public class Display
         for (String z : s)
         {
             String[] q = z.split("\\|");
-            if (q.length == 3 || q.length == 4)
+            if (q.length == 3)
                 keyValues.put(q[0], new String[]{q[1].toUpperCase().replace((char) 13 + "", ""), q[2].toUpperCase().replace((char) 13 + "", "")});
+            else if (q.length == 4)
+                keyValues.put(q[0], new String[]{q[1].toUpperCase().replace((char) 13 + "", ""), q[2].toUpperCase().replace((char) 13 + "", ""),
+                        q[3].replace((char) 13 + "", "")});
         }
         return keyValues == null || keyValues.size() == 0;
     }
