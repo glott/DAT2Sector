@@ -75,7 +75,7 @@ public class DataHandler
         File e = null;
         try
         {
-            e = new File(System.getProperty("user.home") + File.separator + "Downloads" + File.separator + files[0].getName().substring(0, 3).toUpperCase() + ".sct2");
+            e = new File(Main.WORKING_DIRECTORY + File.separator + files[0].getName().substring(0, 3).toUpperCase() + ".sct2");
             e.createNewFile();
             PrintWriter pw = new PrintWriter(e);
             pw.println(SCT_STA);
@@ -119,7 +119,7 @@ public class DataHandler
     {
         try
         {
-            File dir = new File(System.getProperty("user.home") + File.separator + "Downloads" + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Maps");
+            File dir = new File(Main.WORKING_DIRECTORY + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Maps");
             dir.mkdir();
 
             String mapID = "";
@@ -253,7 +253,7 @@ public class DataHandler
         File e = null;
         try
         {
-            e = new File(System.getProperty("user.home") + File.separator + "Downloads" + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + "_ret.sct2");
+            e = new File(Main.WORKING_DIRECTORY + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + "_ret.sct2");
             e.createNewFile();
             PrintWriter pw = new PrintWriter(e);
             pw.println(s);
@@ -268,14 +268,14 @@ public class DataHandler
         if (keyfile == null || sct == null) return;
         try
         {
-            File out = new File(System.getProperty("user.home") + File.separator + "Downloads" + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Video Maps.xml");
+            File out = new File(Main.WORKING_DIRECTORY + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Video Maps.xml");
             out.createNewFile();
 
             PrintWriter pw = new PrintWriter(out);
             pw.println("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
                     "<VideoMaps xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">");
 
-            String loc = System.getProperty("user.home") + File.separator + "Downloads" + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Maps" + File.separator;
+            String loc = Main.WORKING_DIRECTORY + File.separator + sct.getName().substring(0, sct.getName().length() - 5) + " Maps" + File.separator;
             String keys = readFile(keyfile);
             for (String key : keys.split("\\r?\\n"))
             {

@@ -1,7 +1,7 @@
 # DAT2Sector
 _by Josh Glottmann_
 
-**Version 1.3.2** - 07/27/2022
+**Version 1.3.3** - 08/13/2022
 
 This application converts FAA .dat files to .sct2 files and .sct2 files to .xml files.
 

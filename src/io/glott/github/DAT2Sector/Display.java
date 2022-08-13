@@ -32,7 +32,7 @@ public class Display
         selectDATButton.addActionListener(e ->
         {
             JFileChooser chooser = new JFileChooser();
-            chooser.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + "Downloads"));
+            chooser.setCurrentDirectory(new File(Main.WORKING_DIRECTORY));
             chooser.setFileFilter(new FileNameExtensionFilter("DAT File (*.dat)", "dat"));
             chooser.setAcceptAllFileFilterUsed(false);
             chooser.setMultiSelectionEnabled(true);
@@ -45,7 +45,7 @@ public class Display
         selectKeyButton.addActionListener(e ->
         {
             JFileChooser chooser = new JFileChooser();
-            chooser.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + "Downloads"));
+            chooser.setCurrentDirectory(new File(Main.WORKING_DIRECTORY));
             chooser.setFileFilter(new FileNameExtensionFilter("Key File (*.key)", "key"));
             chooser.setAcceptAllFileFilterUsed(false);
             chooser.setMultiSelectionEnabled(false);
@@ -65,7 +65,7 @@ public class Display
         selectSCTButton.addActionListener(e ->
         {
             JFileChooser chooser = new JFileChooser();
-            chooser.setCurrentDirectory(new File(System.getProperty("user.home") + File.separator + "Downloads"));
+            chooser.setCurrentDirectory(new File(Main.WORKING_DIRECTORY));
             chooser.setFileFilter(new FileNameExtensionFilter("SCT2 File (*.sct2)", "sct2"));
             chooser.setAcceptAllFileFilterUsed(false);
             chooser.setMultiSelectionEnabled(false);
