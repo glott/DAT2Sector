@@ -1,19 +1,20 @@
 ########## MODIFY THESE VALUES ##########
 center = (37.142778, -120.324722)
-radius = 235.0
-file_loc = "C:\\Users\\Josh\\Downloads\\NCT Video Maps.xml"
+radius = 245.0
+file_loc = "C:\\Users\\Josh\\AppData\\Roaming\\vSTARS\\Video Maps\\NCT Video Maps.xml"
 
 ########### DO NOT EDIT BELOW ###########
 header = "CENTER\t" + str(center) + "\nRADIUS\t" + str(round(float(radius), 1)) \
     + "\nFILE\t" + str(file_loc) +"\n"
 
-import imp, os, sys, re
-try:
-    imp.find_module("geopy")
-except ImportError:
-    os.system("python -m pip install geopy")
+import imp, os, sys, re, math
 
-import geopy.distance
+def haversine(lon1, lat1, lon2, lat2):
+    lon1, lat1, lon2, lat2 = map(math.radians, [lon1, lat1, lon2, lat2])
+    dlon = lon2 - lon1 
+    dlat = lat2 - lat1 
+    a = math.sin(dlat / 2) ** 2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon / 2) ** 2
+    return 2 * math.asin(math.sqrt(a)) * 3440.07
 
 os.system("cls")
 print(header)
@@ -31,7 +32,7 @@ for line in file_in:
         coords = (lat, lon)
         if(abs(lat) > 90): continue
         
-        dist = geopy.distance.geodesic(center, coords).nm
+        dist = haversine(center[1], center[0], lon, lat)
 
         if(dist <= radius): file_out.write(line)
     else: 
