@@ -238,14 +238,11 @@ public class DataHandler
         String s = readFile(sct);
         for (String name : key.keySet())
         {
-            String rep = key.get(name)[1];
+            String pre = key.get(name)[1].length() >= 8 ? key.get(name)[1].substring(0, 8) + " ": "";
+            String rep = pre + key.get(name)[0];
             rep = rep.replace("FLCHK - ", "FC - ");
-            if (rep.length() > 34)
-                rep = rep.substring(9, 34);
-            else if (rep.length() > 25)
-                rep = rep.substring(9);
-            else if (rep.length() > 9)
-                rep = rep.substring(9);
+            if (rep.length() > 25)
+                rep = rep.substring(0, 25);
             String pad = "                         ".substring(rep.length());
             s = s.replaceAll(name + "\\s+", rep + " " + pad);
         }
